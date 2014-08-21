@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Phone number:</strong>
+  <%= @coffee_drinker.phone_number %>
+</p>
+
+<p>
+  <strong>Current score:</strong>
+  <%= @coffee_drinker.current_score %>
+</p>
+
+<%= link_to 'Edit', edit_coffee_drinker_path(@coffee_drinker) %> |
+<%= link_to 'Back', coffee_drinkers_path %>
