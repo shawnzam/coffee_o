@@ -1,29 +1,38 @@
-<h1>Listing checkins</h1>
-
-<table>
+<%- model_class = Checkin -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Checkin %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Coffee drinker</th>
-      <th>With mug</th>
-      <th>Current score</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:with_mug) %></th>
+      <th><%= model_class.human_attribute_name(:current_score) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @checkins.each do |checkin| %>
       <tr>
-        <td><%= checkin.coffee_drinker %></td>
+        <td><%= checkin.id %></td>
         <td><%= checkin.with_mug %></td>
         <td><%= checkin.current_score %></td>
-        <td><%= link_to 'Show', checkin %></td>
-        <td><%= link_to 'Edit', edit_checkin_path(checkin) %></td>
-        <td><%= link_to 'Destroy', checkin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l checkin.created_at, format: :long %></td>
+        <td>
+          <%= link_to checkin_path(checkin), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to checkin_path(checkin), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Checkin', new_checkin_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_checkin_path,
+            :class => 'btn btn-primary' %>
