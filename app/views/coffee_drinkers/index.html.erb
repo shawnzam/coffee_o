@@ -1,27 +1,38 @@
-<h1>Listing coffee_drinkers</h1>
-
-<table>
+<%- model_class = CoffeeDrinker -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => CoffeeDrinker %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Phone number</th>
-      <th>Current score</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:phone_number) %></th>
+      <th><%= model_class.human_attribute_name(:current_score) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @coffee_drinkers.each do |coffee_drinker| %>
       <tr>
+        <td><%= coffee_drinker.id %></td>
         <td><%= coffee_drinker.phone_number %></td>
         <td><%= coffee_drinker.current_score %></td>
-        <td><%= link_to 'Show', coffee_drinker %></td>
-        <td><%= link_to 'Edit', edit_coffee_drinker_path(coffee_drinker) %></td>
-        <td><%= link_to 'Destroy', coffee_drinker, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l coffee_drinker.created_at, format: :long %></td>
+        <td>
+          <%= link_to coffee_drinker_path(coffee_drinker), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to coffee_drinker_path(coffee_drinker), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Coffee drinker', new_coffee_drinker_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_coffee_drinker_path,
+            :class => 'btn btn-primary' %>

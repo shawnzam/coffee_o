@@ -1,6 +1,5 @@
-<h1>Editing coffee_drinker</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @coffee_drinker %> |
-<%= link_to 'Back', coffee_drinkers_path %>
+<%- model_class = CoffeeDrinker -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => CoffeeDrinker %></h1>
+</div>
+<%= render :partial => 'form' %>
