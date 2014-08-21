@@ -1,0 +1,12 @@
+<%= simple_form_for(@daily_code) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :code_for_mug %>
+    <%= f.input :code_for_non_mug %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

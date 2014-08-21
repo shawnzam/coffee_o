@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :daily_codes
+
   resources :coffee_drinkers
 
   resources :checkins
