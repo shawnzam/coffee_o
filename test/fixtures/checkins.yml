@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coffee_drinker_id: 
+  with_mug: false
+  current_score: 1
+
+two:
+  coffee_drinker_id: 
+  with_mug: false
+  current_score: 1
