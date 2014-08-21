@@ -1,5 +1,6 @@
-<h1>New daily_code</h1>
+<%- model_class = DailyCode -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => DailyCode %></h1>
+</div>
+<%= render :partial => 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', daily_codes_path %>

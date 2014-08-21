@@ -1,27 +1,38 @@
-<h1>Listing daily_codes</h1>
-
-<table>
+<%- model_class = DailyCode -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => DailyCode %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Code for mug</th>
-      <th>Code for non mug</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:code_for_mug) %></th>
+      <th><%= model_class.human_attribute_name(:code_for_non_mug) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
     <% @daily_codes.each do |daily_code| %>
       <tr>
+        <td><%= daily_code.id %></td>
         <td><%= daily_code.code_for_mug %></td>
         <td><%= daily_code.code_for_non_mug %></td>
-        <td><%= link_to 'Show', daily_code %></td>
-        <td><%= link_to 'Edit', edit_daily_code_path(daily_code) %></td>
-        <td><%= link_to 'Destroy', daily_code, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%=l daily_code.created_at, format: :long %></td>
+        <td>
+          <%= link_to daily_code_path(daily_code), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to daily_code_path(daily_code), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Daily code', new_daily_code_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_daily_code_path,
+            :class => 'btn btn-primary' %>
