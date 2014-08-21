@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Coffee drinker:</strong>
+  <%= @checkin.coffee_drinker %>
+</p>
+
+<p>
+  <strong>With mug:</strong>
+  <%= @checkin.with_mug %>
+</p>
+
+<p>
+  <strong>Current score:</strong>
+  <%= @checkin.current_score %>
+</p>
+
+<%= link_to 'Edit', edit_checkin_path(@checkin) %> |
+<%= link_to 'Back', checkins_path %>
